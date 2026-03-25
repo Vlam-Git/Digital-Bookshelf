@@ -1,0 +1,190 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #e5dcc5;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Centered, fixed-aspect book area */
+#book-wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #919191;
+    overflow: hidden;
+}
+
+/* Adjust aspect ratio to taste */
+#book-aspect {
+    width: 100%;
+    height: auto;
+    max-width: 1100px;
+    aspect-ratio: 3 / 2;
+    position: relative;
+}
+
+/* Book fills the aspect box */
+#book {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background: #cbb89b;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    overflow: hidden;
+    transform-style: preserve-3d;
+}
+
+/* Back to bookshelf button */
+#back-button {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 28px;
+    font-size: 1rem;
+    background: #8b6f47;
+    color: #fffdf7;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+#back-button:hover {
+    background: #a7895c;
+    transform: translateX(-50%) scale(1.05);
+}
+
+#back-button:active {
+    transform: translateX(-50%) scale(0.97);
+}
+
+/* ============================================================
+	BASE PAGE STYLING
+============================================================ */
+.page {
+    width: 50%;
+    height: 100%;
+    background: #fffdf7;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.12);
+    padding: 40px;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    color: #333;
+}
+
+/* Left page */
+.left-page {
+    left: 0;
+    border-right: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Right page */
+.right-page {
+    right: 0;
+    border-left: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Flip page (used only during animation) */
+.flip-page {
+    right: 0;
+    width: 50%;
+    height: 100%;
+    transform-origin: left center;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    display: none;
+    background: #fffdf7;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.12);
+}
+
+/* Simple content styling */
+.page h1 {
+    margin-top: 0;
+    font-size: 1.8rem;
+}
+
+.page p {
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+/* ============================================================
+	PAGE FLIPPING ANIMATION
+============================================================ */
+.flip-forward {
+    animation: flipForward 0.8s ease forwards;
+}
+
+@keyframes flipForward {
+    0%   { transform: rotateY(0deg); }
+    100% { transform: rotateY(-180deg); }
+}
+
+/* Flip backward animation */
+.flip-backward {
+    animation: flipBackward 0.8s ease forwards;
+}
+
+@keyframes flipBackward {
+    0%   { transform: rotateY(-180deg); }
+    100% { transform: rotateY(0deg); }
+}
+
+/* Click hints (optional) */
+.left-page,
+.right-page {
+    cursor: pointer;
+}
+
+.left-page::after,
+.right-page::after {
+    position: absolute;
+    bottom: 10px;
+    font-size: 0.75rem;
+    color: rgba(0,0,0,0.4);
+}
+
+
+/* ============================================================
+	TEXT STYLING
+============================================================ */
+.page {
+    font-family: "Times New Roman", serif;
+	overflow-y: auto;
+    font-size: 1;
+    line-height: 0.5;
+    padding: 1rem;
+}
+
+.page h2 {
+    font-size: 1.4rem;
+    text-align: center;
+    margin: 1rem 0 0.5rem 0;
+}
+
+.page h3 {
+    font-size: 1.2rem;
+    margin: 1rem 0 0.5rem 0;
+}
+
+.page p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0 0 1rem 0;
+}
+
+.scene-break {
+    text-align: center;
+    margin: 2rem 0;
+    opacity: 0.6;
+}

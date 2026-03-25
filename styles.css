@@ -1,0 +1,101 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #111;
+}
+
+/* ============================================================
+	BOOKSHELF FORMAT
+============================================================ */
+#bookshelf-wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Fixed aspect ratio */
+#bookshelf-aspect {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    position: relative;
+}
+
+/* Background layer */
+#layer-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('assets/example.png') center/contain no-repeat;
+    z-index: 1;
+}
+
+/* Books layer */
+#layer-books {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    transform-style: preserve-3d;
+}
+
+/* ============================================================
+	BOOK STRUCTURE
+============================================================ */
+.book {
+    position: absolute;
+    width: var(--w);
+    height: var(--h);
+    transform-style: preserve-3d;
+	transition: transform 0.35s ease;
+}
+
+/* Unified 3D object that rotates as one piece */
+.book-body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+/* Spine */
+.book-spine {
+    position: absolute;
+    width: var(--spine-width, 15%);
+    height: 100%;
+    background: var(--spine-image, #3a2f2a) center/cover no-repeat;
+    backface-visibility: hidden;
+    transform-origin: left center;
+    transform: rotateY(0deg);
+	cursor: pointer;
+}
+
+/* Cover */
+.book-cover {
+    position: absolute;
+    left: var(--spine-width, 15%);
+    width: calc(100% - var(--spine-width, 15%));
+    height: 100%;
+    backface-visibility: hidden;
+    transform-origin: left center;
+    transform: rotateY(90deg);
+}
+
+.book-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.book:hover:not(.turning) {
+    transform: translateZ(15px) scale(1.03);
+}
+
+.book.turning .book-body {
+    transform: rotateY(-90deg);
+}

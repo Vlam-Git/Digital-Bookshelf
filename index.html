@@ -1,0 +1,50 @@
+<head>
+    <meta charset="UTF-8">
+    <title>3D Bookshelf</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="bookshelf-wrapper">
+
+    <!-- Fixed aspect ratio box -->
+    <div id="bookshelf-aspect">
+
+            <!-- Background Layer -->
+            <div id="layer-bg"></div>
+
+            <!-- Books Layer -->
+            <div id="layer-books">
+
+                <!-- Book1 -->
+				<div class="book"
+					 style="
+						--w:8%;
+						--h:13%;
+						--spine-width:15%;
+						--spine-image:url('assets/spines/spine1.png');
+						left: 35%;
+						top: 17.7%;"
+					 data-link="collection/book1/index.html">
+
+					<div class="book-body">
+						<!-- Spine -->
+						<div class="book-spine"></div>
+						<!-- Cover -->
+						<div class="book-cover">
+							<img src="assets/covers/cover1.png" alt="Book 1">
+						</div>
+					</div>
+
+				</div>
+
+            </div>
+
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
